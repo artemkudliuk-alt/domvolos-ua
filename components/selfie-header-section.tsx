@@ -42,13 +42,24 @@ export function SelfieHeaderSection({
             />
           </div>
 
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <h2 className="text-[18px] font-light tracking-[-0.03em] text-ink sm:text-[20px]">
-              Як зробити фото
+              Пам&apos;ятка для ідеальної примірки
             </h2>
-            <p className="text-xs font-light leading-relaxed text-slate-500 sm:text-sm">
-              Зробіть фото анфас при хорошому освітленні, тримайте голову рівно та не закривайте обличчя волоссям.
-            </p>
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-0.5">
+              <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/80 bg-slate-50/90 px-2.5 py-1 text-[11px] font-normal text-slate-700 shadow-2xs">
+                ☀️ Гарне освітлення
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/80 bg-slate-50/90 px-2.5 py-1 text-[11px] font-normal text-slate-700 shadow-2xs">
+                🧢 Без головних уборів
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/80 bg-slate-50/90 px-2.5 py-1 text-[11px] font-normal text-slate-700 shadow-2xs">
+                👓 Без окулярів
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/80 bg-slate-50/90 px-2.5 py-1 text-[11px] font-normal text-slate-700 shadow-2xs">
+                👤 Обличчя прямо по центру
+              </span>
+            </div>
           </div>
         </div>
 
