@@ -44,22 +44,22 @@ export function ResultPanel({
 
   return (
     <div className="lg:sticky lg:top-24 h-fit rounded-[34px] border border-white/75 bg-white/85 p-5 shadow-[0_22px_60px_rgba(17,24,39,0.08)] backdrop-blur-xl transition-all duration-300 sm:p-6">
-      <div className="mb-4 flex items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
+      <div className="mb-4 flex flex-col items-start gap-2 border-b border-slate-100 pb-3.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
         <div>
-          <h2 className="text-[20px] font-light tracking-[-0.03em] text-ink sm:text-[22px]">
+          <h2 className="text-[22px] font-light tracking-[-0.03em] text-ink sm:text-[24px]">
             Дзеркало примірки
           </h2>
-          <p className="text-xs font-light text-slate-500">
+          <p className="text-sm font-light text-slate-500">
             {resultImageUrl ? "Ваша фото-примірка готова!" : selectedWig ? "Перуку обрано — натисніть приміряти" : "Оберіть перуку ліворуч"}
           </p>
         </div>
 
         {currentWig ? (
-          <div className="flex flex-col items-end">
-            <span className="rounded-full border border-slate-200 bg-white/95 px-3 py-1 text-xs font-medium text-slate-700 shadow-xs">
+          <div className="flex w-full min-w-0 flex-col items-start sm:w-auto sm:items-end">
+            <span className="max-w-full truncate rounded-full border border-slate-200 bg-white/95 px-3 py-1 text-sm font-medium text-slate-700 shadow-xs">
               {currentWig.name}
             </span>
-            <span className="mt-1 text-xs font-semibold text-emerald-700">
+            <span className="mt-1 text-sm font-semibold text-emerald-700">
               {currentWig.price}
             </span>
           </div>
@@ -67,13 +67,13 @@ export function ResultPanel({
       </div>
 
       {statusText && !isLoading ? (
-        <div className="mb-3.5 rounded-2xl bg-slate-50 px-3.5 py-2 text-xs font-light text-slate-600 border border-slate-100 animate-fade-in-up">
+        <div className="mb-3.5 rounded-2xl bg-slate-50 px-3.5 py-2 text-sm font-light text-slate-600 border border-slate-100 animate-fade-in-up">
           {statusText}
         </div>
       ) : null}
 
       {errorText ? (
-        <div className="mb-3.5 rounded-2xl border border-red-200/90 bg-red-50/90 px-4 py-3 text-xs font-light text-red-700 shadow-xs animate-fade-in-up">
+        <div className="mb-3.5 rounded-2xl border border-red-200/90 bg-red-50/90 px-4 py-3 text-sm font-light text-red-700 shadow-xs animate-fade-in-up">
           {errorText}
         </div>
       ) : null}
@@ -86,21 +86,21 @@ export function ResultPanel({
             {/* Quick action bar when user selected another wig from catalog */}
             {isDifferentWigSelected && selectedWig ? (
               <div className="rounded-2xl border border-emerald-200 bg-emerald-50/95 p-3.5 text-center shadow-xs animate-fade-in-up">
-                <p className="text-xs text-emerald-950">
+                <p className="text-sm text-emerald-950">
                   Ви обрали нову перуку: <strong className="font-semibold">«{selectedWig.name}»</strong>
                 </p>
                 <button
                   type="button"
                   onClick={onGenerate}
                   disabled={isLoading}
-                  className="mt-2.5 w-full inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-ink px-5 text-xs sm:text-sm font-medium text-white shadow-md transition-all duration-200 hover:bg-slate-800 active:scale-98 cursor-pointer"
+                  className="mt-2.5 w-full inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm sm:text-base font-medium text-white shadow-md transition-all duration-200 hover:bg-slate-800 active:scale-98 cursor-pointer"
                 >
-                  <span>Приміряти «{selectedWig.name}» ✨</span>
+                  <span>Приміряти «{selectedWig.name}»</span>
                 </button>
               </div>
             ) : null}
 
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[28px] border border-line bg-mist shadow-[0_20px_48px_rgba(17,24,39,0.12)]">
+            <div className="relative aspect-[2/3] overflow-hidden rounded-[28px] border border-line bg-mist shadow-[0_20px_48px_rgba(17,24,39,0.12)]">
               <Image
                 src={resultImageUrl}
                 alt="Результат примірки"
@@ -109,8 +109,9 @@ export function ResultPanel({
                 sizes="(max-width: 1024px) 100vw, 420px"
                 unoptimized
               />
-              <div className="absolute top-3.5 left-3.5 rounded-full border border-white/80 bg-white/85 px-3 py-1 text-xs font-medium text-slate-700 shadow-xs backdrop-blur-md">
-                ✨ Примірка готова
+              <div className="absolute top-3.5 left-3.5 rounded-full border border-white/80 bg-white/85 px-3 py-1 inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 shadow-xs backdrop-blur-md">
+                <svg className="h-3.5 w-3.5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M5 13l4 4L19 7" /></svg>
+                Примірка готова
               </div>
             </div>
 
@@ -121,14 +122,14 @@ export function ResultPanel({
                   href={currentWig.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 px-6 text-sm sm:text-base font-semibold text-white shadow-[0_12px_28px_rgba(16,185,129,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(16,185,129,0.42)] active:scale-[0.98] select-none cursor-pointer"
+                  className="w-full inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 px-6 text-base sm:text-[17px] font-semibold text-white shadow-[0_12px_28px_rgba(16,185,129,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(16,185,129,0.42)] active:scale-[0.98] select-none cursor-pointer"
                 >
                   <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
                   <span>Купити в 1 клік</span>
                   {currentWig.price ? (
-                    <span className="rounded-full bg-white/25 px-2.5 py-0.5 text-xs font-bold text-white tracking-wide">
+                    <span className="rounded-full bg-white/25 px-2.5 py-0.5 text-sm font-bold text-white tracking-wide">
                       {currentWig.price}
                     </span>
                   ) : null}
@@ -143,7 +144,7 @@ export function ResultPanel({
                 <button
                   type="button"
                   onClick={handleDownload}
-                  className="flex-1 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-xs font-medium text-slate-700 shadow-xs transition-all duration-200 hover:bg-slate-50 hover:text-ink active:scale-95 cursor-pointer"
+                  className="flex-1 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 shadow-xs transition-all duration-200 hover:bg-slate-50 hover:text-ink active:scale-95 cursor-pointer"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -155,9 +156,9 @@ export function ResultPanel({
                   <button
                     type="button"
                     onClick={onTryAnotherWig}
-                    className="flex-1 inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 text-xs font-medium text-slate-700 shadow-xs transition-all duration-200 hover:bg-slate-50 hover:text-ink active:scale-95 cursor-pointer"
+                    className="flex-1 inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 shadow-xs transition-all duration-200 hover:bg-slate-50 hover:text-ink active:scale-95 cursor-pointer"
                   >
-                    <span>Обрати іншу перуку 💇‍♀️</span>
+                    <span>Обрати іншу перуку</span>
                   </button>
                 ) : null}
               </div>
@@ -181,14 +182,14 @@ export function ResultPanel({
 
             <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-xs text-xl">
-                💇‍♀️
+                <svg className="h-6 w-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.4" strokeWidth={1.6} /><circle cx="6" cy="18" r="2.4" strokeWidth={1.6} /><path strokeLinecap="round" strokeWidth={1.6} d="M8.1 7.5L20 18M8.1 16.5L20 6" /></svg>
               </div>
 
-              <h3 className="mb-1 text-base font-medium text-ink">
+              <h3 className="mb-1 text-[17px] font-medium text-ink">
                 {selectedWig ? selectedWig.name : "Оберіть перуку для примірки"}
               </h3>
               
-              <p className="mb-6 max-w-[220px] text-xs font-light text-slate-500">
+              <p className="mb-6 max-w-[220px] text-sm font-light text-slate-500">
                 {selectedWig
                   ? "Натисніть кнопку нижче, щоб приміряти цю перуку на ваше фото"
                   : "Оберіть перуку з каталогу ліворуч та завантажте ваше фото"}
@@ -199,13 +200,13 @@ export function ResultPanel({
                 onClick={onGenerate}
                 disabled={isActionDisabled}
                 className={[
-                  "w-full inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-light tracking-[0.01em] transition-all duration-300 active:scale-[0.98] cursor-pointer",
+                  "w-full inline-flex min-h-12 items-center justify-center rounded-full px-6 text-base font-light tracking-[0.01em] transition-all duration-300 active:scale-[0.98] cursor-pointer",
                   isActionDisabled
                     ? "cursor-not-allowed bg-slate-200 text-slate-400"
                     : "shimmer-button-effect bg-ink text-white shadow-[0_16px_34px_rgba(17,24,39,0.18)] hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-[0_20px_42px_rgba(17,24,39,0.24)]"
                 ].join(" ")}
               >
-                Приміряти перуку ✨
+                Приміряти перуку
               </button>
             </div>
           </div>

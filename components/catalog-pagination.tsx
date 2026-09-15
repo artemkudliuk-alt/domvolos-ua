@@ -38,7 +38,7 @@ export function CatalogPagination({
 
   return (
     <div className="flex flex-col items-center justify-between gap-3 border-t border-slate-100 pt-4 sm:flex-row">
-      <span className="text-xs font-light text-slate-500">
+      <span className="text-sm font-light text-slate-500">
         Показано <strong className="font-medium text-slate-700">{startItem}–{endItem}</strong> з <strong className="font-medium text-slate-700">{totalItems}</strong> товарів
       </span>
 
@@ -47,7 +47,7 @@ export function CatalogPagination({
           type="button"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="inline-flex h-8 items-center justify-center rounded-full border border-slate-200 bg-white px-3 text-xs font-light text-slate-600 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-8 items-center justify-center rounded-full border border-slate-200 bg-white px-3 text-sm font-light text-slate-600 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
         >
           ← Назад
         </button>
@@ -59,7 +59,7 @@ export function CatalogPagination({
               type="button"
               onClick={() => onPageChange(page)}
               className={[
-                "inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-light transition-all duration-200",
+                "inline-flex h-8 w-8 items-center justify-center rounded-full text-sm font-light transition-all duration-200",
                 currentPage === page
                   ? "bg-ink font-normal text-white shadow-2xs"
                   : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-ink"
@@ -68,7 +68,7 @@ export function CatalogPagination({
               {page}
             </button>
           ) : (
-            <span key={`dots-${idx}`} className="px-1 text-xs text-slate-400">
+            <span key={`dots-${idx}`} className="px-1 text-sm text-slate-400">
               ...
             </span>
           )
@@ -78,7 +78,7 @@ export function CatalogPagination({
           type="button"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="inline-flex h-8 items-center justify-center rounded-full border border-slate-200 bg-white px-3 text-xs font-light text-slate-600 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-8 items-center justify-center rounded-full border border-slate-200 bg-white px-3 text-sm font-light text-slate-600 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
         >
           Далі →
         </button>
